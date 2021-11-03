@@ -1,14 +1,20 @@
-import type { NextPage } from "next";
-import { stringify } from "querystring";
 import dbConnect from "../lib/dbConnect";
-import GroceryItem from "../models/groceryList";
+import GroceryItem, { IGrocery } from "../models/groceryList";
+interface Props {
+  groceryItems: IGrocery[];
+}
 
-const Home: NextPage = ({ groceryItems }) => {
+const Home = ({ groceryItems }: Props) => {
   return (
     <div className="bg-gray-50">
       <h1 className="text-3xl">Apezinho Groceries</h1>
       {!!groceryItems.length &&
-        groceryItems.map((item) => <div key={item.name}>{item.name}</div>)}
+        groceryItems.map((item) => (
+          <div key={item._id}>
+            <p>{item.name}</p>
+            <p>{item.price}</p>
+          </div>
+        ))}
     </div>
   );
 };
@@ -18,12 +24,10 @@ export async function getServerSideProps() {
     await dbConnect();
 
     /* find all the data in our database */
-    const result = await GroceryItem.find({});
-    const groceryItems = result ? stringify(result) : null;
+    const results: IGrocery[] = await GroceryItem.find({});
+    const groceryItems = JSON.parse(JSON.stringify(results));
 
-    console.log(groceryItems);
-
-    return { props: { groceryItems: [] } };
+    return { props: { groceryItems } };
   } catch (error) {
     console.log("Error fetching: ", error);
   }

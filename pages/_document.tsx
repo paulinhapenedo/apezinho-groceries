@@ -7,10 +7,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en" className="text-gray-900 leading-tight bg-gray-50">
         <Head>
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
             rel="stylesheet"
-          />
+          /> */}
         </Head>
         <body>
           <Main />

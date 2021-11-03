@@ -3,7 +3,8 @@ module.exports = {
   darkMode: "media", // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
+      sans: ["iA Writer Quattro", "sans-serif"],
+      serif: ["iA Writer Duo", "serif"],
     },
   },
   variants: {

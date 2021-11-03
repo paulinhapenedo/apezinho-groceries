@@ -7,7 +7,7 @@ interface Props {
 const Home = ({ groceryItems }: Props) => {
   return (
     <div className="bg-gray-50">
-      <h1 className="text-3xl">Apezinho Groceries</h1>
+      <h1 className="font-serif text-3xl">Apezinho Groceries</h1>
       {!!groceryItems.length &&
         groceryItems.map((item) => (
           <div key={item._id}>

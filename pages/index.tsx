@@ -1,12 +1,12 @@
-import dbConnect from "../lib/dbConnect";
-import GroceryItem, { IGrocery } from "../models/groceryList";
+import dbConnect from "@lib/dbConnect";
+import GroceryItem, { IGrocery } from "@models/groceryList";
 interface Props {
   groceryItems: IGrocery[];
 }
 
 const Home = ({ groceryItems }: Props) => {
   return (
-    <div className="bg-gray-50">
+    <div className="container bg-gray-50">
       <h1 className="font-serif text-3xl">Apezinho Groceries</h1>
       {!!groceryItems.length &&
         groceryItems.map((item) => (

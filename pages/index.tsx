@@ -1,5 +1,5 @@
-import dbConnect from "@lib/dbConnect";
-import GroceryItem, { IGrocery } from "@models/groceryList";
+import dbConnect from '@lib/dbConnect';
+import GroceryItem, { IGrocery } from '@models/groceryList';
 interface Props {
   groceryItems: IGrocery[];
 }
@@ -29,7 +29,7 @@ export async function getServerSideProps() {
 
     return { props: { groceryItems } };
   } catch (error) {
-    console.log("Error fetching: ", error);
+    console.log('Error fetching: ', error);
   }
 }
 

@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export interface IGrocery extends Document {
   name: string;
@@ -27,5 +27,4 @@ const GrocerySchema: Schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Grocery ||
-  (mongoose.model("Grocery", GrocerySchema) as Model<IGrocery>);
+export default mongoose.models.Grocery || (mongoose.model('Grocery', GrocerySchema) as Model<IGrocery>);

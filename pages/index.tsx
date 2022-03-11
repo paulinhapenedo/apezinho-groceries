@@ -1,36 +1,33 @@
-import dbConnect from '@lib/dbConnect';
-import GroceryItem, { IGrocery } from '@models/groceryList';
-interface Props {
-  groceryItems: IGrocery[];
-}
+import Head from 'next/head';
 
-const Home = ({ groceryItems }: Props) => {
+const Home = () => {
+  const title = `Tem... \nmas acabou`;
+
   return (
-    <div className="container bg-gray-50">
-      <h1 className="font-serif text-3xl">Apezinho Groceries</h1>
-      {!!groceryItems.length &&
-        groceryItems.map((item) => (
-          <div key={item._id}>
-            <p>{item.name}</p>
-            <p>{item.price}</p>
-          </div>
-        ))}
-    </div>
+    <>
+      <Head>
+        <title>Tem... mas acabou.</title>
+      </Head>
+      <main className="grid place-items-center h-screen">
+        <div className="sm:max-4/12 pl-6 pr-4 grid">
+          <h1 className="text-5xl mb-3 whitespace-pre-line">{title}</h1>
+          <span className="text-base">O histórico de compras do Apezinho.</span>
+          <button
+            className="w-full max-w-xs bg-yellow-400 text-lg font-semibold	text-gray-900 rounded-md px-2 py-4 mt-12 hover:bg-yellow-300 transition ease-in-out"
+            onClick={() => console.log('click')}
+          >
+            Entrar
+          </button>
+          <button
+            className="text-left text-sm py-2 mt-2 underline"
+            onClick={() => console.log('Create account')}
+          >
+            Ou crie uma nova conta.
+          </button>
+        </div>
+      </main>
+    </>
   );
 };
-
-export async function getServerSideProps() {
-  try {
-    await dbConnect();
-
-    /* find all the data in our database */
-    const results: IGrocery[] = await GroceryItem.find({});
-    const groceryItems = JSON.parse(JSON.stringify(results));
-
-    return { props: { groceryItems } };
-  } catch (error) {
-    console.log('Error fetching: ', error);
-  }
-}
 
 export default Home;

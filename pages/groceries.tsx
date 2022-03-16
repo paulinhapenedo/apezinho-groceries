@@ -1,5 +1,6 @@
 import dbConnect from '@lib/dbConnect';
 import GroceryItem, { IGrocery } from '@models/groceryList';
+import { getSession } from 'next-auth/react';
 interface Props {
   groceryItems: IGrocery[];
 }
@@ -19,8 +20,17 @@ const Home = ({ groceryItems }: Props) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
   try {
+    const session = await getSession({ req });
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
     await dbConnect();
 
     /* find all the data in our database */

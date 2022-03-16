@@ -1,6 +1,8 @@
+import { GetServerSidePropsContext } from 'next';
+import { getSession } from 'next-auth/react';
+
 import dbConnect from '@lib/dbConnect';
 import GroceryItem, { IGrocery } from '@models/groceryList';
-import { getSession } from 'next-auth/react';
 interface Props {
   groceryItems: IGrocery[];
 }
@@ -20,9 +22,9 @@ const Home = ({ groceryItems }: Props) => {
   );
 };
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const session = await getSession({ req });
+    const session = await getSession({ req: context.req });
     if (!session) {
       return {
         redirect: {

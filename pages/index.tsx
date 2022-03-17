@@ -6,6 +6,7 @@ const title = `Tem... \nmas acabou`;
 const Home = () => {
   const { status } = useSession();
   const isUserLoggedIn = status === 'authenticated';
+  const callbackUrl = `${process.env.NEXT_PUBLIC_URL}/groceries`;
 
   return (
     <>
@@ -18,7 +19,7 @@ const Home = () => {
           <span className="text-base">O histórico de compras do Apezinho.</span>
           <button
             className="w-full max-w-xs bg-yellow-400 text-lg font-semibold	text-gray-900 rounded-md px-2 py-4 mt-12 hover:bg-yellow-300 transition ease-in-out"
-            onClick={() => signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/groceries` })}
+            onClick={() => signIn('google', { callbackUrl })}
           >
             Entrar
           </button>

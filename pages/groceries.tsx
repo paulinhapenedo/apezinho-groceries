@@ -7,7 +7,7 @@ interface Props {
   groceryItems: IGrocery[];
 }
 
-const Home = ({ groceryItems }: Props) => {
+const Groceries = ({ groceryItems }: Props) => {
   return (
     <div className="container bg-gray-50">
       <h1 className="font-serif text-3xl">Apezinho Groceries</h1>
@@ -45,4 +45,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 }
 
-export default Home;
+export default Groceries;

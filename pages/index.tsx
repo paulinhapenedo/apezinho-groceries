@@ -1,12 +1,17 @@
 import Head from 'next/head';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const title = `Tem... \nmas acabou`;
 
 const Home = () => {
+  const router = useRouter();
   const { status } = useSession();
   const isUserLoggedIn = status === 'authenticated';
   const callbackUrl = `${process.env.NEXT_PUBLIC_URL}/groceries`;
+
+  const onClickButton = () =>
+    isUserLoggedIn ? router.push(callbackUrl) : signIn('google', { callbackUrl });
 
   return (
     <>
@@ -19,7 +24,7 @@ const Home = () => {
           <span className="text-base">O histórico de compras do Apezinho.</span>
           <button
             className="w-full max-w-xs bg-yellow-400 text-lg font-semibold	text-gray-900 rounded-md px-2 py-4 mt-12 hover:bg-yellow-300 transition ease-in-out"
-            onClick={() => signIn('google', { callbackUrl })}
+            onClick={onClickButton}
           >
             Entrar
           </button>

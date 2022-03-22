@@ -20,3 +20,5 @@ jest.mock('next-auth/react', () => {
     }),
   };
 });
+
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
